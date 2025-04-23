@@ -1,43 +1,26 @@
 pipeline {
     agent any
 
-    options {
-        skipDefaultCheckout(true) // Avoid automatic checkout
-    }
-
     stages {
-        stage('Clean Workspace') {
+        stage('Pull from GitHub') {
             steps {
-                deleteDir() // Clean out old files
-            }
-        }
-
-        stage('Clone Repository') {
-            steps {
-                checkout([$class: 'GitSCM',
-                          branches: [[name: '*/main']],
-                          userRemoteConfigs: [[url: 'https://github.com/I-mgopal/Akash_Portfolio']]])
+                git 'https://github.com/I-mgopal/Akash_Portfolio'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    // Ensure the Dockerfile is in the root directory, no need for path if it's in the root
-                    bat 'docker build --no-cache -t portfolio-local .'
-                }
+                bat 'docker build --no-cache -t portfolio-local .'
             }
         }
 
-        stage('Deploy Container') {
+        stage('Run Docker Container') {
             steps {
-                script {
-                    bat '''
-                    docker stop portfolio-app || exit 0
-                    docker rm portfolio-app || exit 0
-                    docker run -d -p 80:80 --name portfolio-app portfolio-local
-                    '''
-                }
+                bat '''
+                docker stop portfolio-app || true
+                docker rm portfolio-app || true
+                docker run -d -p 80:80 --name portfolio-app portfolio-local
+                '''
             }
         }
     }
