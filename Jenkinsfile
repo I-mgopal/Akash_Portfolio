@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Pull from GitHub') {
             steps {
-                git 'https://github.com/I-mgopal/Akash_Portfolio'
+                git branch: 'main', url: 'https://github.com/I-mgopal/Akash_Portfolio'
             }
         }
 
