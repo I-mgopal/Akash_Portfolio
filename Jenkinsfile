@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_CREDENTIALS = 'docker-hub-credentials-id' // Jenkins credential ID (Username/Password)
-        DOCKER_IMAGE = 'akash0537/portfolio-ci-cd'
-    }
+    DOCKER_HUB_CREDENTIALS = 'docker-hub-credentials-id' // Jenkins credential ID
+    DOCKER_IMAGE = 'gopal89/portfolio-ci-cd'             // 👈 Updated image name
+}
+
 
     stages {
         stage('Clone Repository') {
