@@ -1,0 +1,578 @@
+
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header class="navbar">
+        <h1 class="navbar-title">Welcome</h1> <!-- Title instead of logo -->
+        <div class="navbar-container">
+            <nav class="nav-links"> <!-- Navigation links -->
+                <a href="#intro">About Me</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#certifications">Certifications</a>
+                <a href="#contact">Contacts</a>
+            </nav>
+        </div>
+    </header>
+        <!-- Introduction Section -->
+        <section class="intro" data-aos="fade-up" id="intro">
+            <p>I'm an aspiring Software Engineer and Data Scientist with a passion for solving complex problems.</p>
+        </section>
+        
+        <section class="hero"  id="hero">
+
+            <div class="video-container"></div>
+            <div class="video-indicators"></div>
+        </section>
+
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script>
+            AOS.init();
+        
+            const videos = [
+                'C:/Users/Akash/OneDrive/Desktop/New_folder/1st.mp4',
+                'C:/Users/Akash/OneDrive/Desktop/New_folder/2nd.mp4',
+                'C:/Users/Akash/OneDrive/Desktop/New_folder/3rd.mp4',
+                'C:/Users/Akash/OneDrive/Desktop/New_folder/4th.mp4',
+                'C:/Users/Akash/OneDrive/Desktop/New_folder/5th.mp4'
+            ];
+        
+            let currentVideoIndex = 0;
+            let videoTimer;
+        
+            function changeVideo(index) {
+                currentVideoIndex = index;
+        
+                const videoContainer = document.querySelector('.video-container');
+                videoContainer.innerHTML = `
+                    <video width="100%" height="100%" autoplay muted>
+                        <source src="${videos[currentVideoIndex]}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>`;
+        
+                updateIndicators();
+        
+                clearTimeout(videoTimer);
+                videoTimer = setTimeout(() => {
+                    currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+                    changeVideo(currentVideoIndex);
+                }, 5000);
+            }
+        
+            function createIndicators() {
+                const indicatorContainer = document.querySelector('.video-indicators');
+                videos.forEach((video, index) => {
+                    const indicator = document.createElement('div');
+                    indicator.classList.add('indicator');
+                    if (index === 0) indicator.classList.add('active');
+                    indicator.addEventListener('click', () => changeVideo(index));
+                    indicatorContainer.appendChild(indicator);
+                });
+            }
+        
+            function updateIndicators() {
+                const indicators = document.querySelectorAll('.indicator');
+                indicators.forEach((indicator, index) => {
+                    if (index === currentVideoIndex) {
+                        indicator.classList.add('active');
+                    } else {
+                        indicator.classList.remove('active');
+                    }
+                });
+            }
+        
+            window.onload = () => {
+                createIndicators();
+                changeVideo(0);
+            };
+        </script>
+       <!-- About Section -->
+<section class="about" data-aos="fade-up" id="about">
+    <!--resume-->
+<div class="about-container">
+    <div class="about-text">
+        <h2>Meet an Aspiring Software Engineer & Data Scientist Ready to Innovate</h2>
+        <p>I hold a B.Tech in Computer Science with minors in Data Science and DevOps. My career focus is on leveraging technology to solve complex problems and drive impactful solutions.</p>
+    </div>
+    <div class="about-image">
+        <img src="C:/Users/Akash/OneDrive/Desktop/New_folder/rm.jpg" alt="Resume Image" class="full-length-image">
+        <!-- Download button directly below the image -->
+        <div class="download-buttons">
+            <a href="path_to_your_resume_image" download="resume_full_length.jpg" class="download-btn">Download Image</a>
+        </div>
+    </div>
+</div>
+</section>
+
+    <div class="expertise-section">
+        <h3>Explore My Expertise in Software Engineering, Data Science, and More</h3>
+        <div class="expertise-grid">
+            <div class="expertise-item">
+                <i class="icon">📦</i>
+                <h4>Your Go-To Resource for Innovative Tech Solutions and Development</h4>
+                <p>I specialize in creating efficient software solutions and data-driven insights.</p>
+                <a href="#">Learn &#8594;</a>
+            </div>
+            <div class="expertise-item">
+                <i class="icon">📊</i>
+                <h4>Transforming Data into Actionable Insights with Data Science Expertise</h4>
+                <p>Harness the power of data to drive informed decision-making.</p>
+                <a href="#">Discover &#8594;</a>
+            </div>
+            <div class="expertise-item">
+                <i class="icon">⚙️</i>
+                <h4>Streamlining Operations with Cutting-Edge DevOps Practices and Tools</h4>
+                <p>Optimize your workflow with seamless integration and automation strategies.</p>
+                <a href="#">Explore &#8594;</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+   <!-- Skills Section -->
+<section class="skills" id="skills">
+    <div class="skills-container">
+        <h3>Skills</h3>
+        <h2>Core Competencies and Expertise</h2>
+        <p>I possess a strong foundation in programming and data analysis. My technical skills include proficiency in Python, Java, C++, R, Tableau, and AWS.</p>
+        
+        <div class="skills-cards">
+            <!-- Card 1: Technical Skills -->
+            <div class="card">
+                <img src="path_to_technical_skills_image" alt="Technical Skills">
+                <h4>Technical Skills</h4>
+                <p>Expertise in multiple programming languages and tools.</p>
+            </div>
+
+            <!-- Card 2: Soft Skills -->
+            <div class="card">
+                <img src="path_to_soft_skills_image" alt="Soft Skills">
+                <h4>Soft Skills</h4>
+                <p>Strong problem-solving abilities and teamwork skills.</p>
+            </div>
+
+            <!-- Card 3: Why Choose Me -->
+            <div class="card">
+                <img src="path_to_why_choose_me_image" alt="Why Choose Me?">
+                <h4>Why Choose Me?</h4>
+                <p>I blend technical know-how with effective collaboration.</p>
+            </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="skills-buttons">
+            <a href="#" class="btn learn-more">Learn More</a>
+            <a href="#" class="btn explore">Explore &#8594;</a>
+        </div>
+    </div>
+</section>
+
+<!-- Project -->
+<section class="projects" id="projects">
+    <div class="container">
+        <h2 class="section-title">Featured Projects Showcase</h2>
+        <p class="section-subtitle">Explore my innovative software development projects.</p>
+
+        <!-- Project section-->
+        <div class="projects-section">
+
+            <!-- Project 1 (Visible) -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="C:/Users/Akash/OneDrive/Desktop/New_folder/p1.jpg" alt="Banking System Project" />
+                </div>
+                <div class="project-info">
+                    <h3>Banking System</h3>
+                    <p class="project-tags">Java App | Financial | User-Friendly</p>
+                    <p class="project-description">
+                        The Banking System project provides a secure platform for managing financial transactions.
+                        Built with Java, it emphasizes user experience and data integrity.
+                    </p>
+                    <a href="https://github.com/yourusername/banking-system" target="_blank" class="view-code-btn">View Code</a>
+                    <a href="https://www.youtube.com/watch?v=your_youtube_video_link1" target="_blank" class="explore-btn">Explore</a>
+                </div>
+            </div>
+
+            <!-- Project 2 (Visible) -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="C:/Users/Akash/OneDrive/Desktop/New_folder/p2.jpg" alt="Predictive Analytics Dashboard" />
+                </div>
+                <div class="project-info">
+                    <h3>Predictive Analytics Dashboard</h3>
+                    <p class="project-tags">Data Viz | Machine Learning | Interactive Interface</p>
+                    <p class="project-description">
+                        The Predictive Analytics Dashboard leverages machine learning to forecast trends and insights.
+                        It features an interactive interface for real-time data analysis.
+                    </p>
+                    <a href="https://github.com/yourusername/analytics-dashboard" target="_blank" class="view-code-btn">View Code</a>
+                    <a href="https://www.youtube.com/watch?v=your_youtube_video_link2" target="_blank" class="explore-btn">Explore</a>
+                </div>
+            </div>
+
+            <!-- Project 3 (Visible) -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="C:/Users/Akash/OneDrive/Desktop/New_folder/p3.jpg" alt="Project Title 3" />
+                </div>
+                <div class="project-info">
+                    <h3>Project Title 3</h3>
+                    <p class="project-tags">Category | Technology | Feature</p>
+                    <p class="project-description">Short description of Project 3.</p>
+                    <a href="https://github.com/yourusername/project3" target="_blank" class="view-code-btn">View Code</a>
+                    <a href="https://www.youtube.com/watch?v=your_youtube_video_link3" target="_blank" class="explore-btn">Explore</a>
+                </div>
+            </div>
+
+            <!-- Hidden Project 4 -->
+            <div class="project-card hidden">
+                <div class="project-image">
+                    <img src="C:/Users/Akash/OneDrive/Desktop/New_folder/p4.jpg" alt="Project Title 4" />
+                </div>
+                <div class="project-info">
+                    <h3>Project Title 4</h3>
+                    <p class="project-tags">Category | Technology | Feature</p>
+                    <p class="project-description">Short description of Project 4.</p>
+                    <a href="https://github.com/yourusername/project4" target="_blank" class="view-code-btn">View Code</a>
+                    <a href="https://www.youtube.com/watch?v=your_youtube_video_link4" target="_blank" class="explore-btn">Explore</a>
+                </div>
+            </div>
+
+            <!-- Hidden Project 5 -->
+            <div class="project-card hidden">
+                <div class="project-image">
+                    <img src="C:/Users/Akash/OneDrive/Desktop/New_folder/p5.jpg" alt="Project Title 5" />
+                </div>
+                <div class="project-info">
+                    <h3>Project Title 5</h3>
+                    <p class="project-tags">Category | Technology | Feature</p>
+                    <p class="project-description">Short description of Project 5.</p>
+                    <a href="https://github.com/yourusername/project5" target="_blank" class="view-code-btn">View Code</a>
+                    <a href="https://www.youtube.com/watch?v=your_youtube_video_link5" target="_blank" class="explore-btn">Explore</a>
+                </div>
+            </div>
+
+            <!-- Hidden Project 6 -->
+            <div class="project-card hidden">
+                <div class="project-image">
+                    <img src="C:/Users/Akash/OneDrive/Desktop/New_folder/p6.jpg" alt="Project Title 6" />
+                </div>
+                <div class="project-info">
+                    <h3>Project Title 6</h3>
+                    <p class="project-tags">Category | Technology | Feature</p>
+                    <p class="project-description">Short description of Project 6.</p>
+                    <a href="https://github.com/yourusername/project6" target="_blank" class="view-code-btn">View Code</a>
+                    <a href="https://www.youtube.com/watch?v=your_youtube_video_link6" target="_blank" class="explore-btn">Explore</a>
+                </div>
+            </div>
+
+        </div>
+
+        
+
+        <!-- View All Button -->
+        <button class="view-all-btn" id="viewAllBtn">View More</button>
+    </div>
+</section>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const viewAllBtn = document.getElementById("viewAllBtn");
+        const hiddenProjects = document.querySelectorAll(".project-card.hidden");
+        let isExpanded = false; // Track the state of the button
+
+        viewAllBtn.addEventListener("click", function () {
+            if (!isExpanded) {
+                // Show hidden projects
+                hiddenProjects.forEach(project => {
+                    project.classList.remove("hidden");
+                });
+                viewAllBtn.textContent = "View Less"; // Change button text
+            } else {
+                // Hide projects again
+                hiddenProjects.forEach(project => {
+                    project.classList.add("hidden");
+                });
+                viewAllBtn.textContent = "View More"; // Change button text back
+            }
+            isExpanded = !isExpanded; // Toggle the state
+        });
+    });
+</script>
+<!--Exprience-->
+<section class="experience" id="experience">
+    <div class="experience-content">
+        <div class="experience-text">
+            <h3>Experience</h3>
+            <h2>My Front-End Development Internship Journey</h2>
+            <p>Gained hands-on experience in developing responsive web applications using modern frameworks and technologies.</p>
+            <a href="#" class="btn">Learn More</a>
+            <a href="#" class="view-link">View &#x2192;</a>
+        </div>
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <div class="icon"><img src="icon.png" alt="icon"></div>
+                <div class="details">
+                    <h4>Internship Role</h4>
+                    <p>Gained hands-on experience in developing responsive web applications using modern frameworks and technologies.</p>
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="icon"><img src="icon.png" alt="icon"></div>
+                <div class="details">
+                    <h4>Key Projects</h4>
+                    <p>Contributed to multiple projects that enhanced user experience and interface design.</p>
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="icon"><img src="icon.png" alt="icon"></div>
+                <div class="details">
+                    <h4>Skills Developed</h4>
+                    <p>Improved my coding skills, teamwork, and problem-solving abilities in a fast-paced environment.</p>
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="icon"><img src="icon.png" alt="icon"></div>
+                <div class="details">
+                    <h4>Achievements</h4>
+                    <p>Recognized for outstanding contributions and innovative solutions during my internship tenure.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certifications Section -->
+<section class="certifications" id="certifications">
+    <div class="certifications-container">
+        <h3>Certifications</h3>
+        <h2>Certifications That Showcase My Commitment to Continuous Learning and Growth</h2>
+        <div class="certification-cards">
+            <!-- First 5 certificates (visible by default) -->
+            <div class="cert-card">
+                <img src="C:Users/Akash/OneDrive/Desktop/New_folder/certificates/AWS.PNG" alt="Certification Image" class="cert-image">
+                <h4>Explore My Certifications and Enhance Your Skills</h4>
+                <p>I hold certifications in C++, Java, Cloud Computing, and AWS (in progress).</p>
+                <div class="cert-links">
+                    <a href="#" class="cert-btn">View Certificate</a>
+                    <a href="#" class="course-btn">Course</a>
+                </div>
+            </div>
+            <div class="cert-card">
+                <img src="C:Users/Akash/OneDrive/Desktop/New_folder/certificates/BoardInfinity.PNG" alt="Certification Image" class="cert-image">
+                <h4>Stay Updated with My Latest Achievements</h4>
+                <p>These certifications reflect my dedication to mastering essential technologies.</p>
+                <div class="cert-links">
+                    <a href="file:///C:/Users/Akash/Downloads/BI-20240723-5789056.pdf" target="_blank" class="cert-btn">View Certificate</a>
+                    <a href="https://www.boardinfinity.com/learner/my-learning" target="_blank" class="course-btn">Course</a>
+                </div>
+            </div>
+            <div class="cert-card">
+                <img src="C:Users/Akash/OneDrive/Desktop/New_folder/certificates/Generative AI.jpg" alt="Certification Image" class="cert-image">
+                <h4>Software Engineering & Data Science Skills</h4>
+                <p>Demonstrates expertise and readiness for real-world challenges.</p>
+                <div class="cert-links">
+                    <a href="#" class="cert-btn">View Certificate</a>
+                    <a href="#" class="course-btn">Course</a>
+                </div>
+            </div>
+            <div class="cert-card">
+                <img src="C:Users/Akash/OneDrive/Desktop/New_folder/certificates/dsa.jpg" alt="Certification Image" class="cert-image">
+                <h4>Proficiency in Database Management Systems</h4>
+                <p>SQL, MongoDB, and relational databases.</p>
+                <div class="cert-links">
+                    <a href="#" class="cert-btn">View Certificate</a>
+                    <a href="#" class="course-btn">Course</a>
+                </div>
+            </div>
+            <div class="cert-card">
+                <img src="C:Users/Akash/OneDrive/Desktop/New_folder/certificates/c++.jpg" alt="Certification Image" class="cert-image">
+                <h4>Web Development Technologies</h4>
+                <p>HTML, CSS, JavaScript, and modern frameworks.</p>
+                <div class="cert-links">
+                    <a href="#" class="cert-btn">View Certificate</a>
+                    <a href="#" class="course-btn">Course</a>
+                </div>
+            </div>
+
+            <!-- Additional certificates (hidden initially) -->
+            <div class="cert-card hidden">
+                <img src="C:Users/Akash/OneDrive/Desktop/New_folder/certificates/Excel.jpg" alt="Certification Image" class="cert-image">
+                <h4>AI and Machine Learning Specialization</h4>
+                <p>Validates skills in AI, ML, and TensorFlow development.</p>
+                <div class="cert-links">
+                    <a href="#" class="cert-btn">View Certificate</a>
+                    <a href="#" class="course-btn">Course</a>
+                </div>
+            </div>
+            <div class="cert-card hidden">
+                <img src="C:Users/Akash/OneDrive/Desktop/New_folder/certificates/logo.png" alt="Certification Image" class="cert-image">
+                <h4>Cybersecurity Essentials</h4>
+                <p>Foundational skills in network security and threat detection.</p>
+                <div class="cert-links">
+                    <a href="#" class="cert-btn">View Certificate</a>
+                    <a href="#" class="course-btn">Course</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- View More Button -->
+        <button id="view-more-btn" class="view-more-btn">View More</button>
+    </div>
+</section>
+<script>
+  // JavaScript to handle "View More" button functionality
+const viewMoreBtn = document.getElementById('view-more-btn');
+const hiddenCards = document.querySelectorAll('.cert-card.hidden');
+
+viewMoreBtn.addEventListener('click', () => {
+    hiddenCards.forEach(card => card.classList.toggle('hidden'));
+    
+    // Change button text based on visibility
+    if (viewMoreBtn.innerText === 'View More') {
+        viewMoreBtn.innerText = 'View Less';
+    } else {
+        viewMoreBtn.innerText = 'View More';
+    }
+});
+  
+</script>
+<section class="achievements">
+    <h2>Extracurricular Activities & Achievements</h2>
+
+    <div class="achievement-cards">
+        <!-- Row 1 -->
+        <div class="card-row">
+            <div class="achievement-card">
+                <h3>Coding Pirates Club Member</h3>
+                <p>Participated in coding challenges and enhanced problem-solving skills.</p>
+            </div>
+            <div class="achievement-card">
+                <h3>Leadership</h3>
+                <p>Held a leadership role as a prefect during school, handling responsibilities and managing events.</p>
+            </div>
+            <div class="achievement-card">
+                <h3>Language Known</h3>
+                <p>English, Hindi (Mother tongue), Japanese (learning).</p>
+            </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="card-row">
+            <div class="achievement-card image-card">
+                <img src="path-to-kabaddi-image.jpg" alt="Kabaddi Winner">
+                <h3>Kabaddi Winner</h3>
+                <p>Won a medal in the school-level Kabaddi competition in 10th grade.</p>
+            </div>
+            <div class="achievement-card image-card">
+                <img src="path-to-one-world-event-image.jpg" alt="One World Event Winner">
+                <h3>One World Event Winner</h3>
+                <p>The One World Event at Lovely Professional University, demonstrating success in cultural and global events.</p>
+            </div>
+            <div class="achievement-card image-card">
+                <img src="path-to-attendance-award-image.jpg" alt="100% Attendance Award">
+                <h3>100% Attendance Award</h3>
+                <p>Recognized for 100% attendance in class 9, reflecting discipline, commitment, and reliability.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Contact Section-->
+<section id="contact" class="contact-section">
+    <h2>Contact Me</h2>
+    
+    <p>If you'd like to get in touch, feel free to reach out using the form below.</p>
+
+    <form action="https://formspree.io/f/{your_form_id}" method="POST" class="contact-form">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="_replyto" required>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Send Message</button>
+    </form>
+</section>
+<!-- Contact Information Section -->
+<section class="contact-info">
+    <div class="info-container">
+        <!-- Email -->
+        <div class="info-box">
+            <i class="fas fa-envelope"></i> <!-- FontAwesome icon for email -->
+            <h3>Email</h3>
+            <p>akash05379@gmail.com</p>
+        </div>
+
+        <!-- Phone -->
+        <div class="info-box">
+            <i class="fas fa-phone"></i> <!-- FontAwesome icon for phone -->
+            <h3>Phone</h3>
+            <p>+91 8521085808</p>
+        </div>
+
+        <!-- Address -->
+        <div class="info-box">
+            <i class="fas fa-map-marker-alt"></i> <!-- FontAwesome icon for address -->
+            <h3>Address</h3>
+            <p>Lovely Professional University,<br>
+               Jalandhar - Delhi, Grand Trunk Rd,<br>
+               Phagwara, Punjab 144411</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer-section">
+    <div class="footer-container">
+       
+        <!-- Footer Navigation -->
+        <nav class="footer-nav">
+            <a href="#about">About Me</a>
+            <a href="#projects">Projects</a>
+            <a href="#certifications">Certifications</a>
+            <a href="#contact">Contact Us</a>
+            <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+        </nav>
+
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/akash_sight30/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/akash-kumar-400a80332/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.youtube.com/@nightsight30" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookies Settings</a>
+    </div>
+</footer>
+
+
+
+
+</body>
+</html>
