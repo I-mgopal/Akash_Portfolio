@@ -1,7 +1,17 @@
 pipeline {
     agent any
 
+    options {
+        skipDefaultCheckout(true) // Avoid automatic checkout
+    }
+
     stages {
+        stage('Clean Workspace') {
+            steps {
+                deleteDir() // Clean out old files
+            }
+        }
+
         stage('Clone Repository') {
             steps {
                 checkout([$class: 'GitSCM',
@@ -10,16 +20,10 @@ pipeline {
             }
         }
 
-        stage('Clean Workspace') {
-            steps {
-                deleteDir()  // Clean the workspace before checkout
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build Docker image without cache
+                    // Ensure the Dockerfile is in the root directory, no need for path if it's in the root
                     bat 'docker build --no-cache -t portfolio-local .'
                 }
             }
@@ -28,10 +32,9 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
-                    // Stop and remove any running container with the same name, then run the new one
                     bat '''
                     docker stop portfolio-app || exit 0
-                    docker rm -f portfolio-app || exit 0
+                    docker rm portfolio-app || exit 0
                     docker run -d -p 80:80 --name portfolio-app portfolio-local
                     '''
                 }
