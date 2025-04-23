@@ -17,7 +17,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${DOCKER_IMAGE} ."
+                    bat "docker build -t ${DOCKER_IMAGE} ."
                 }
             }
         }
@@ -26,8 +26,8 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: "${DOCKER_HUB_CREDENTIALS}", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     script {
-                        sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
-                        sh "docker push ${DOCKER_IMAGE}"
+                        bat 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
+                        bat "docker push ${DOCKER_IMAGE}"
                     }
                 }
             }
@@ -36,9 +36,9 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 script {
-                    sh 'docker stop portfolio-container || true'
-                    sh 'docker rm portfolio-container || true'
-                    sh "docker run -d -p 80:80 --name portfolio-container ${DOCKER_IMAGE}"
+                    bat 'docker stop portfolio-container || true'
+                    bat 'docker rm portfolio-container || true'
+                    bat "docker run -d -p 80:80 --name portfolio-container ${DOCKER_IMAGE}"
                 }
             }
         }
