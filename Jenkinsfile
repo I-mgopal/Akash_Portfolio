@@ -25,17 +25,17 @@ pipeline {
         }
     }
 
-    stage('Push to Docker Hub') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    bat '''
-                    docker login -u %DOCKER_USER% -p %DOCKER_PASS%
-                    docker tag portfolio-app gopal89/portfolio-ci-cd
-                    docker push gopal89/portfolio-ci-cd
-                    '''
+        stage('Push to Docker Hub') {
+                steps {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        bat '''
+                        docker login -u %DOCKER_USER% -p %DOCKER_PASS%
+                        docker tag portfolio-app gopal89/portfolio-ci-cd
+                        docker push gopal89/portfolio-ci-cd
+                        '''
+                    }
                 }
             }
-        }
 
     post {
         failure {
